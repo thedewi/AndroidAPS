@@ -12,7 +12,7 @@ class Objective3 @Inject constructor(injector: HasAndroidInjector) : Objective(i
     @Inject lateinit var activePlugin: ActivePlugin
 
     init {
-        tasks.add(MinimumDurationTask(this, T.days(7).msecs()))
+        tasks.add(MinimumDurationTask(this, T.days(7).msecs() / QUICK_STUDY_FACTOR))
         tasks.add(
             object : Task(this, R.string.objectives_manualenacts) {
                 override fun isCompleted(): Boolean {
@@ -30,6 +30,6 @@ class Objective3 @Inject constructor(injector: HasAndroidInjector) : Objective(i
 
     companion object {
 
-        private const val MANUAL_ENACTS_NEEDED = 20
+        private val MANUAL_ENACTS_NEEDED = 20 / (QUICK_STUDY_FACTOR / 5)
     }
 }

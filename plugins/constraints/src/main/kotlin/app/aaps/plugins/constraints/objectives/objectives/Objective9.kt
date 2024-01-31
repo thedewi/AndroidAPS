@@ -8,7 +8,7 @@ class Objective9(injector: HasAndroidInjector) : Objective(injector, "smb", R.st
 
     init {
         tasks.add(
-            MinimumDurationTask(this, T.days(28).msecs())
+            MinimumDurationTask(this, T.days(28).msecs() / QUICK_STUDY_FACTOR)
                 .learned(Learned(R.string.objectives_smb_learned))
         )
     }

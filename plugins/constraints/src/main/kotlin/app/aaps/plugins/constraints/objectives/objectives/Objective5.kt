@@ -15,7 +15,7 @@ class Objective5(injector: HasAndroidInjector) : Objective(injector, "maxiobzero
     @Inject lateinit var aapsLogger: AAPSLogger
 
     init {
-        tasks.add(MinimumDurationTask(this, T.days(5).msecs()))
+        tasks.add(MinimumDurationTask(this, T.days(5).msecs() / QUICK_STUDY_FACTOR))
         tasks.add(
             object : Task(this, R.string.closedmodeenabled) {
                 override fun isCompleted(): Boolean {

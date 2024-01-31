@@ -16,6 +16,11 @@ import javax.inject.Inject
 import kotlin.math.floor
 
 abstract class Objective(injector: HasAndroidInjector, spName: String, @StringRes objective: Int, @StringRes gate: Int) {
+    companion object {
+
+        @JvmStatic
+        public val QUICK_STUDY_FACTOR: Long = 60
+    }
 
     @Inject lateinit var sp: SP
     @Inject lateinit var rh: ResourceHelper
@@ -53,7 +58,7 @@ abstract class Objective(injector: HasAndroidInjector, spName: String, @StringRe
         this.gate = gate
         startedOn = sp.getLong("Objectives_" + spName + "_started", 0L)
         accomplishedOn = sp.getLong("Objectives_" + spName + "_accomplished", 0L)
-        if (accomplishedOn - dateUtil.now() > T.hours(3).msecs() || startedOn - dateUtil.now() > T.hours(3).msecs()) { // more than 3 hours in the future
+        if (accomplishedOn - dateUtil.now() > T.hours(3).msecs() / QUICK_STUDY_FACTOR || startedOn - dateUtil.now() > T.hours(3).msecs()) { // more than 3 hours in the future
             startedOn = 0
             accomplishedOn = 0
         }
